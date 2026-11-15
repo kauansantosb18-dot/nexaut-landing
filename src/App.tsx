@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Nav } from "./components/Nav";
 import { Process } from "./components/Process";
+import { Why } from "./components/Why";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Hero />
         <Creations />
         <Process />
+        <Why />
         <Contact />
       </main>
       <Footer />

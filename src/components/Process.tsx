@@ -2,20 +2,16 @@ import { useInView } from "../hooks/useInView";
 
 const steps = [
   {
-    title: "Diagnóstico",
-    description: "Entendemos o problema, o fluxo atual e o que precisa aparecer na tela.",
+    title: "Você apresenta a necessidade",
+    description: "Conta o que a empresa precisa controlar — pedidos, estoque, clientes ou a operação inteira.",
   },
   {
-    title: "Arquitetura visual",
-    description: "Montamos a experiência com a identidade NEXAUT e a marca da sua empresa.",
+    title: "A NEXAUT desenvolve a solução",
+    description: "Desenhamos e construímos o sistema sob medida, com a identidade visual da marca.",
   },
   {
-    title: "Construção do sistema",
-    description: "Desenvolvemos o produto com componentes sólidos, responsivos e prontos para evoluir.",
-  },
-  {
-    title: "Entrega e evolução",
-    description: "Você entra no ar com um sistema vivo — e segue evoluindo com suporte direto.",
+    title: "Você recebe o sistema personalizado",
+    description: "Entra no ar com um produto pronto para usar — e evolui com suporte direto.",
   },
 ];
 
@@ -43,17 +39,17 @@ function Step({
 
 export function Process() {
   return (
-    <section id="processo" className="lp-section">
+    <section id="como-funciona" className="lp-section">
       <div className="lp-section-head">
-        <p className="nx-kicker">Método</p>
+        <p className="nx-kicker">Como funciona</p>
         <h2>Mais praticidade, menos etapas.</h2>
-        <p>Processo direto, sem burocracia. Você fala conosco e o sistema começa a nascer.</p>
+        <p>Do contato à entrega: um caminho curto para o seu sistema entrar em operação.</p>
       </div>
       <div className="lp-process">
         {steps.map((step, i) => (
           <Step
             key={step.title}
-            num={`0${i + 1}`}
+            num={String(i + 1).padStart(2, "0")}
             title={step.title}
             description={step.description}
           />

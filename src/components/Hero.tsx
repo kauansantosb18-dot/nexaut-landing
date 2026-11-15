@@ -51,17 +51,21 @@ export function Hero() {
           />
           <h1 className="lp-hero-brand-name">NEXAUT</h1>
         </div>
-        <p className="lp-hero-headline">Inteligência que transforma.</p>
+        <p className="lp-hero-headline">
+          Seu negócio mais inteligente.
+          <br />
+          Sua gestão mais simples.
+        </p>
         <p className="lp-hero-copy">
-          Dashboards, relatórios, logística, pedidos, estoque, produtos e clientes — sistemas
-          operacionais sob a identidade visual NEXAUT.
+          Sistemas personalizados para controlar pedidos, estoque, clientes, vendas e operações em
+          um só lugar.
         </p>
         <div className="lp-cta-row">
           <a className="nx-btn nx-btn-primary" href={whatsappUrl} target="_blank" rel="noreferrer">
             Quero meu sistema
           </a>
           <a className="nx-btn nx-btn-outline" href="#criacoes">
-            Ver criações
+            Conhecer soluções
           </a>
         </div>
       </div>
