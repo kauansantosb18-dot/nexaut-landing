@@ -145,10 +145,10 @@ function ClientsMock() {
         </div>
         <div className="mock-clients">
           {[
-            { name: "Casa Mia", tag: "Ativo", tone: "ok", city: "SP · 42 pedidos" },
-            { name: "MDN Elétrica", tag: "VIP", tone: "gold", city: "MG · 18 pedidos" },
-            { name: "Studio Norte", tag: "Novo", tone: "ok", city: "RJ · 3 pedidos" },
-            { name: "Alpha Tech", tag: "Inativo", tone: "muted", city: "PR · 0 pedidos" },
+            { name: "Cliente A", tag: "Ativo", tone: "ok", city: "SP · 42 pedidos" },
+            { name: "Cliente B", tag: "VIP", tone: "gold", city: "MG · 18 pedidos" },
+            { name: "Cliente C", tag: "Novo", tone: "ok", city: "RJ · 3 pedidos" },
+            { name: "Cliente D", tag: "Inativo", tone: "muted", city: "PR · 0 pedidos" },
           ].map((c) => (
             <div key={c.name} className="mock-client-row">
               <div className="mock-avatar" />
