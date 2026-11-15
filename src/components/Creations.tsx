@@ -8,6 +8,20 @@ const creations: {
   description: string;
 }[] = [
   {
+    kind: "dashboard",
+    title: "Dashboards executivos",
+    tag: "Visão em tempo real",
+    description:
+      "KPIs, curvas e barras para decidir rápido: receita, pedidos, conversão e saúde da operação.",
+  },
+  {
+    kind: "reports",
+    title: "Relatórios sob demanda",
+    tag: "Análise e exportação",
+    description:
+      "Vendas, estoque crítico, rotas e clientes — PDF, XLSX ou CSV, prontos para o time e a diretoria.",
+  },
+  {
     kind: "stock",
     title: "Pedidos & Estoque",
     tag: "Operação comercial",
@@ -19,7 +33,7 @@ const creations: {
     title: "Logística & Entregas",
     tag: "Rastreio operacional",
     description:
-      "Rotas, coletas, hubs e ETA. O time acompanha cada entrega sem planilha e sem WhatsApp perdido.",
+      "Rotas, coletas, hubs e ETA. O time acompanha cada entrega sem planilha e sem mensagem perdida.",
   },
   {
     kind: "products",
@@ -40,7 +54,7 @@ const creations: {
     title: "Sistema operacional de negócio",
     tag: "Plataforma completa",
     description:
-      "Um produto único: pedidos, estoque, logística, clientes e financeiro sob a identidade NEXAUT — sob medida para a sua operação.",
+      "Um produto único: pedidos, estoque, logística, dashboard, clientes e relatórios — sob a identidade NEXAUT.",
   },
 ];
 
@@ -69,7 +83,7 @@ function CreationItem({
         <SystemMock kind={kind} />
       </div>
       <div className="lp-creation-copy">
-        <span className="lp-creation-index">0{index}</span>
+        <span className="lp-creation-index">{String(index).padStart(2, "0")}</span>
         <p className="nx-kicker">{tag}</p>
         <h3>{title}</h3>
         <p>{description}</p>
@@ -85,8 +99,8 @@ export function Creations() {
         <p className="nx-kicker">Criações</p>
         <h2>Sistemas que rodam o seu negócio</h2>
         <p>
-          Logística, pedidos com estoque, produtos, clientes e plataformas operacionais — cada
-          sistema nasce visual, integrado e com a cara NEXAUT.
+          Dashboards, relatórios, logística, pedidos com estoque, produtos, clientes e plataformas
+          operacionais — cada sistema nasce visual, integrado e com a cara NEXAUT.
         </p>
       </div>
       <div className="lp-creations">

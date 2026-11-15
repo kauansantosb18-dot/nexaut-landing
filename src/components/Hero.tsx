@@ -53,8 +53,8 @@ export function Hero() {
         </div>
         <p className="lp-hero-headline">Inteligência que transforma.</p>
         <p className="lp-hero-copy">
-          Sistemas sob medida para logística, pedidos, estoque, produtos e clientes — operação
-          completa com a identidade visual NEXAUT.
+          Dashboards, relatórios, logística, pedidos, estoque, produtos e clientes — sistemas
+          operacionais sob a identidade visual NEXAUT.
         </p>
         <div className="lp-cta-row">
           <a className="nx-btn nx-btn-primary" href={whatsappUrl} target="_blank" rel="noreferrer">

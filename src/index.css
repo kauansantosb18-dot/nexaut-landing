@@ -980,6 +980,46 @@ a {
   background: var(--nx-primary);
 }
 
+/* Reports */
+.mock-reports-split {
+  min-height: 140px;
+  align-items: stretch;
+}
+
+.mock-report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--nx-border);
+  border-radius: 10px;
+  padding: 10px;
+  background: color-mix(in srgb, var(--nx-background) 40%, var(--nx-surface));
+}
+
+.mock-report-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid color-mix(in srgb, var(--nx-border) 70%, transparent);
+}
+
+.mock-report-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.mock-report-row strong {
+  font-size: 11px;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.mock-report-row small {
+  font-size: 10px;
+  color: var(--nx-muted);
+}
+
 /* Logistics */
 .mock-logistics-track {
   display: grid;
