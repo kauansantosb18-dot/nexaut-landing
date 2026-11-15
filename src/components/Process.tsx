@@ -46,7 +46,7 @@ export function Process() {
     <section id="processo" className="lp-section">
       <div className="lp-section-head">
         <p className="nx-kicker">Método</p>
-        <h2>Do briefing ao WhatsApp: caminho curto</h2>
+        <h2>Mais praticidade, menos etapas.</h2>
         <p>Processo direto, sem burocracia. Você fala conosco e o sistema começa a nascer.</p>
       </div>
       <div className="lp-process">
