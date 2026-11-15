@@ -980,98 +980,242 @@ a {
   background: var(--nx-primary);
 }
 
-/* Flow automation */
-.mock-flow-body {
-  grid-template-columns: 1fr;
-  padding: 14px;
-  gap: 12px;
+/* Logistics */
+.mock-logistics-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 2px;
 }
 
-.mock-nodes {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  overflow-x: auto;
-  padding-bottom: 4px;
-}
-
-.mock-node {
-  flex: 0 0 auto;
-  min-width: 108px;
-  border: 1px solid var(--nx-border);
-  border-radius: 10px;
-  padding: 10px;
-  background: color-mix(in srgb, var(--nx-background) 40%, var(--nx-surface));
+.mock-track-step {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--nx-muted);
+  position: relative;
 }
 
-.mock-node span {
+.mock-track-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: calc(50% + 10px);
+  width: calc(100% - 20px);
+  height: 2px;
+  background: var(--nx-border);
+}
+
+.mock-track-step.is-done:not(:last-child)::after,
+.mock-track-step.is-now:not(:last-child)::after {
+  background: var(--nx-primary);
+}
+
+.mock-track-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--nx-border);
+  background: var(--nx-surface);
+  z-index: 1;
+}
+
+.mock-track-step.is-done .mock-track-dot,
+.mock-track-step.is-now .mock-track-dot {
+  border-color: var(--nx-primary);
+  background: var(--nx-primary);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--nx-primary) 45%, transparent);
+}
+
+.mock-track-step.is-now {
+  color: var(--nx-primary);
+}
+
+.mock-logistics-split {
+  min-height: 120px;
+}
+
+.mock-map {
+  position: relative;
+  border: 1px solid var(--nx-border);
+  border-radius: 10px;
+  min-height: 120px;
+  background:
+    radial-gradient(circle at 30% 40%, color-mix(in srgb, var(--nx-primary) 12%, transparent), transparent 40%),
+    linear-gradient(180deg, color-mix(in srgb, var(--nx-background) 40%, var(--nx-surface)), var(--nx-elevated));
+  overflow: hidden;
+}
+
+.mock-route {
+  position: absolute;
+  left: 18%;
+  top: 42%;
+  width: 64%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--nx-primary), var(--nx-gold));
+  transform: rotate(-12deg);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--nx-primary) 40%, transparent);
+}
+
+.mock-pin {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+}
+
+.mock-pin.start {
+  left: 16%;
+  top: 48%;
+  background: var(--nx-primary);
+}
+
+.mock-pin.end {
+  right: 14%;
+  top: 28%;
+  background: var(--nx-gold);
+}
+
+.mock-shipments {
+  gap: 8px;
+  justify-content: center;
+}
+
+.mock-ship-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.mock-ship-row strong {
   font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
   letter-spacing: -0.02em;
 }
 
-.mock-node small {
+.mock-ship-meta {
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--nx-muted);
+}
+
+/* Products */
+.mock-product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.mock-product {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--nx-border);
+  border-radius: 10px;
+  padding: 8px;
+  background: color-mix(in srgb, var(--nx-background) 40%, var(--nx-surface));
+}
+
+.mock-product-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--nx-primary) 30%, transparent), var(--nx-elevated));
+  border: 1px solid var(--nx-border);
+}
+
+.mock-product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.mock-product-info strong {
+  font-size: 11px;
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mock-product-info .accent {
+  color: var(--nx-primary);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.mock-product-info small {
   color: var(--nx-muted);
   font-size: 10px;
 }
 
-.mock-node.start {
-  border-color: color-mix(in srgb, var(--nx-primary) 45%, var(--nx-border));
-}
-
-.mock-node.accent {
-  border-color: color-mix(in srgb, var(--nx-primary) 55%, var(--nx-border));
-  background: color-mix(in srgb, var(--nx-primary) 12%, var(--nx-surface));
-}
-
-.mock-node.gold {
-  border-color: color-mix(in srgb, var(--nx-gold) 50%, var(--nx-border));
-  background: color-mix(in srgb, var(--nx-gold) 12%, var(--nx-surface));
-}
-
-.mock-edge {
-  width: 22px;
-  height: 2px;
-  flex: 0 0 auto;
-  background: linear-gradient(90deg, var(--nx-border), var(--nx-primary));
-  position: relative;
-}
-
-.mock-edge::after {
-  content: "";
-  position: absolute;
-  right: -1px;
-  top: 50%;
-  width: 6px;
-  height: 6px;
-  border-right: 2px solid var(--nx-primary);
-  border-top: 2px solid var(--nx-primary);
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.mock-log {
-  border: 1px solid var(--nx-border);
-  border-radius: 10px;
-  padding: 10px 12px;
+/* Clients */
+.mock-clients {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  background: color-mix(in srgb, var(--nx-background) 55%, transparent);
+  gap: 8px;
+}
+
+.mock-client-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--nx-border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--nx-background) 35%, var(--nx-surface));
+}
+
+.mock-client-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.mock-client-copy strong {
+  font-size: 12px;
   font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.mock-client-copy small {
+  color: var(--nx-muted);
+  font-size: 10px;
+}
+
+/* Ops modules */
+.mock-ops-modules {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.mock-module {
+  border: 1px solid var(--nx-border);
+  border-radius: 10px;
+  padding: 14px 10px;
+  text-align: center;
   font-size: 11px;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  color: var(--nx-muted);
+  background: color-mix(in srgb, var(--nx-background) 40%, var(--nx-surface));
 }
 
-.mock-log-line.ok {
-  color: var(--nx-success);
-}
-
-.mock-log-line.run {
+.mock-module.is-active {
   color: var(--nx-primary);
+  border-color: color-mix(in srgb, var(--nx-primary) 45%, var(--nx-border));
+  background: color-mix(in srgb, var(--nx-primary) 12%, var(--nx-surface));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--nx-primary) 15%, transparent);
 }
 
 @media (max-width: 900px) {

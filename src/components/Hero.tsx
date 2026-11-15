@@ -53,8 +53,8 @@ export function Hero() {
         </div>
         <p className="lp-hero-headline">Inteligência que transforma.</p>
         <p className="lp-hero-copy">
-          Criamos sistemas sob medida — painéis, automações e produtos digitais com a mesma
-          identidade visual que você vê aqui.
+          Sistemas sob medida para logística, pedidos, estoque, produtos e clientes — operação
+          completa com a identidade visual NEXAUT.
         </p>
         <div className="lp-cta-row">
           <a className="nx-btn nx-btn-primary" href={whatsappUrl} target="_blank" rel="noreferrer">

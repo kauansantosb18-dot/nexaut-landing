@@ -8,32 +8,39 @@ const creations: {
   description: string;
 }[] = [
   {
-    kind: "dashboard",
-    title: "Dashboard Analytics",
-    tag: "Painel executivo",
+    kind: "stock",
+    title: "Pedidos & Estoque",
+    tag: "Operação comercial",
     description:
-      "KPIs, curva de receita e barras de performance em tempo real — leitura rápida para quem decide.",
+      "Pedidos ligados ao estoque em tempo real: baixa automática, alerta de SKU crítico e status do pedido na mesma tela.",
   },
   {
-    kind: "crm",
-    title: "CRM & Pipeline",
-    tag: "Comercial",
+    kind: "logistics",
+    title: "Logística & Entregas",
+    tag: "Rastreio operacional",
     description:
-      "Funil visual com leads, propostas e fechamentos. O time enxerga o negócio sem planilha paralela.",
+      "Rotas, coletas, hubs e ETA. O time acompanha cada entrega sem planilha e sem WhatsApp perdido.",
+  },
+  {
+    kind: "products",
+    title: "Produtos & Catálogo",
+    tag: "Gestão de itens",
+    description:
+      "Cadastro de produtos, preços, kits e disponibilidade. O catálogo vira base do pedido e do estoque.",
+  },
+  {
+    kind: "clients",
+    title: "Clientes & Relacionamento",
+    tag: "Base comercial",
+    description:
+      "Histórico, status e volume por cliente. Do primeiro contato ao pedido recorrente, tudo no mesmo sistema.",
   },
   {
     kind: "ops",
-    title: "Operação & SLA",
-    tag: "Gestão interna",
+    title: "Sistema operacional de negócio",
+    tag: "Plataforma completa",
     description:
-      "Tabela viva de pedidos, status e prazos. Controle operacional com a linguagem visual NEXAUT.",
-  },
-  {
-    kind: "flow",
-    title: "Automação de fluxo",
-    tag: "Workflow",
-    description:
-      "Triggers, regras e ações encadeadas. O sistema trabalha sozinho e avisa quando importa.",
+      "Um produto único: pedidos, estoque, logística, clientes e financeiro sob a identidade NEXAUT — sob medida para a sua operação.",
   },
 ];
 
@@ -76,10 +83,10 @@ export function Creations() {
     <section id="criacoes" className="lp-section">
       <div className="lp-section-head">
         <p className="nx-kicker">Criações</p>
-        <h2>Sistemas que já nascem com cara de produto</h2>
+        <h2>Sistemas que rodam o seu negócio</h2>
         <p>
-          Cada entrega é um software visual — dashboard, CRM, operação ou automação — com a
-          identidade NEXAUT aplicada de ponta a ponta.
+          Logística, pedidos com estoque, produtos, clientes e plataformas operacionais — cada
+          sistema nasce visual, integrado e com a cara NEXAUT.
         </p>
       </div>
       <div className="lp-creations">

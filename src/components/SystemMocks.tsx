@@ -1,4 +1,4 @@
-type MockKind = "dashboard" | "crm" | "ops" | "flow";
+type MockKind = "stock" | "logistics" | "products" | "clients" | "ops";
 
 function Chrome({ title }: { title: string }) {
   return (
@@ -11,64 +11,90 @@ function Chrome({ title }: { title: string }) {
   );
 }
 
-function DashboardMock() {
+function StockMock() {
   return (
-    <div className="mock-screen mock-dashboard" aria-hidden="true">
-      <Chrome title="NEXAUT · Analytics" />
-      <div className="mock-body">
-        <aside className="mock-rail">
-          <div className="mock-rail-item is-on" />
-          <div className="mock-rail-item" />
-          <div className="mock-rail-item" />
-          <div className="mock-rail-item" />
-        </aside>
-        <div className="mock-main">
-          <div className="mock-kpis">
-            <div className="mock-kpi">
-              <span className="mock-kpi-label">Receita</span>
-              <span className="mock-kpi-value accent">R$ 184k</span>
-              <span className="mock-kpi-trend up">+18%</span>
-            </div>
-            <div className="mock-kpi">
-              <span className="mock-kpi-label">Pedidos</span>
-              <span className="mock-kpi-value">2.431</span>
-              <span className="mock-kpi-trend up">+9%</span>
-            </div>
-            <div className="mock-kpi">
-              <span className="mock-kpi-label">Conversão</span>
-              <span className="mock-kpi-value gold">4,8%</span>
-              <span className="mock-kpi-trend">estável</span>
-            </div>
+    <div className="mock-screen" aria-hidden="true">
+      <Chrome title="NEXAUT · Pedidos & Estoque" />
+      <div className="mock-body mock-ops-body">
+        <div className="mock-kpis">
+          <div className="mock-kpi">
+            <span className="mock-kpi-label">Pedidos hoje</span>
+            <span className="mock-kpi-value accent">128</span>
+            <span className="mock-kpi-trend up">+14%</span>
           </div>
-          <div className="mock-split">
-            <div className="mock-chart-area">
-              <svg className="mock-spark" viewBox="0 0 240 90" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#36d9f5" stopOpacity="0.35" />
-                    <stop offset="100%" stopColor="#36d9f5" stopOpacity="0" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M0 70 L30 58 L55 62 L85 40 L115 48 L145 28 L175 34 L205 18 L240 24 V90 H0 Z"
-                  fill="url(#sparkFill)"
-                />
-                <path
-                  d="M0 70 L30 58 L55 62 L85 40 L115 48 L145 28 L175 34 L205 18 L240 24"
-                  fill="none"
-                  stroke="#36d9f5"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              </svg>
+          <div className="mock-kpi">
+            <span className="mock-kpi-label">Em estoque</span>
+            <span className="mock-kpi-value">4.820</span>
+            <span className="mock-kpi-trend">SKUs</span>
+          </div>
+          <div className="mock-kpi">
+            <span className="mock-kpi-label">Baixo estoque</span>
+            <span className="mock-kpi-value gold">17</span>
+            <span className="mock-kpi-trend">alertas</span>
+          </div>
+        </div>
+        <div className="mock-table">
+          <div className="mock-tr head">
+            <span>Pedido</span>
+            <span>Produto</span>
+            <span>Estoque</span>
+            <span>Status</span>
+          </div>
+          {[
+            { sku: "Cabo 2,5mm", stock: 82, status: "ok", label: "Separado" },
+            { sku: "Disjuntor 20A", stock: 9, status: "warn", label: "Baixo" },
+            { sku: "Tomada 20A", stock: 140, status: "ok", label: "Faturado" },
+            { sku: "LED 12W", stock: 3, status: "danger", label: "Crítico" },
+            { sku: "Quadro 12p", stock: 44, status: "ok", label: "Enviado" },
+          ].map((row, i) => (
+            <div key={row.sku} className="mock-tr">
+              <span className="mono">#{2201 + i}</span>
+              <span>{row.sku}</span>
+              <span className="bar-wrap">
+                <i style={{ width: `${Math.min(row.stock, 100)}%` }} />
+              </span>
+              <span className={`pill ${row.status}`}>{row.label}</span>
             </div>
-            <div className="mock-bars">
-              <span style={{ height: "55%" }} />
-              <span style={{ height: "78%" }} />
-              <span style={{ height: "42%" }} />
-              <span style={{ height: "90%" }} />
-              <span style={{ height: "64%" }} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LogisticsMock() {
+  return (
+    <div className="mock-screen" aria-hidden="true">
+      <Chrome title="NEXAUT · Logística" />
+      <div className="mock-body mock-ops-body">
+        <div className="mock-logistics-track">
+          {["Coleta", "Hub", "Rota", "Entrega"].map((step, i) => (
+            <div key={step} className={`mock-track-step${i < 3 ? " is-done" : ""}${i === 2 ? " is-now" : ""}`}>
+              <span className="mock-track-dot" />
+              <span>{step}</span>
             </div>
+          ))}
+        </div>
+        <div className="mock-split mock-logistics-split">
+          <div className="mock-map">
+            <div className="mock-route" />
+            <div className="mock-pin start" />
+            <div className="mock-pin end" />
+          </div>
+          <div className="mock-list mock-shipments">
+            <div className="mock-ship-row">
+              <strong>#RT-882</strong>
+              <span className="pill ok">Em rota</span>
+            </div>
+            <div className="mock-ship-row">
+              <strong>#RT-879</strong>
+              <span className="pill warn">Aguardando</span>
+            </div>
+            <div className="mock-ship-row">
+              <strong>#RT-871</strong>
+              <span className="pill ok">Entregue</span>
+            </div>
+            <div className="mock-ship-meta">ETA 14:40 · 3 paradas</div>
           </div>
         </div>
       </div>
@@ -76,39 +102,65 @@ function DashboardMock() {
   );
 }
 
-function CrmMock() {
+function ProductsMock() {
   return (
-    <div className="mock-screen mock-crm" aria-hidden="true">
-      <Chrome title="NEXAUT · CRM" />
-      <div className="mock-body mock-crm-body">
-        <div className="mock-pipeline">
+    <div className="mock-screen" aria-hidden="true">
+      <Chrome title="NEXAUT · Produtos" />
+      <div className="mock-body mock-ops-body">
+        <div className="mock-toolbar">
+          <span className="mock-search" />
+          <span className="mock-filter" />
+          <span className="mock-filter narrow" />
+        </div>
+        <div className="mock-product-grid">
           {[
-            { name: "Lead", count: 12, tone: "muted" },
-            { name: "Proposta", count: 7, tone: "primary" },
-            { name: "Fechado", count: 4, tone: "gold" },
-          ].map((col) => (
-            <div key={col.name} className={`mock-pipe-col tone-${col.tone}`}>
-              <div className="mock-pipe-head">
-                <span>{col.name}</span>
-                <strong>{col.count}</strong>
+            { name: "Kit Residencial", price: "R$ 890", stock: "124 un" },
+            { name: "Kit Comercial", price: "R$ 1.450", stock: "58 un" },
+            { name: "Módulo Extra", price: "R$ 220", stock: "310 un" },
+            { name: "Serviço Inst.", price: "R$ 350", stock: "Sob demanda" },
+          ].map((p) => (
+            <div key={p.name} className="mock-product">
+              <div className="mock-product-thumb" />
+              <div className="mock-product-info">
+                <strong>{p.name}</strong>
+                <span className="accent">{p.price}</span>
+                <small>{p.stock}</small>
               </div>
-              <div className="mock-deal" />
-              <div className="mock-deal short" />
-              <div className="mock-deal" />
             </div>
           ))}
         </div>
-        <div className="mock-contact-card">
-          <div className="mock-avatar" />
-          <div className="mock-contact-lines">
-            <span className="wide" />
-            <span />
-            <span className="mid" />
-          </div>
-          <div className="mock-tags">
-            <span className="tag primary">Hot</span>
-            <span className="tag gold">B2B</span>
-          </div>
+      </div>
+    </div>
+  );
+}
+
+function ClientsMock() {
+  return (
+    <div className="mock-screen" aria-hidden="true">
+      <Chrome title="NEXAUT · Clientes" />
+      <div className="mock-body mock-ops-body">
+        <div className="mock-toolbar">
+          <span className="mock-search" />
+          <span className="mock-filter" />
+        </div>
+        <div className="mock-clients">
+          {[
+            { name: "Casa Mia", tag: "Ativo", tone: "ok", city: "SP · 42 pedidos" },
+            { name: "MDN Elétrica", tag: "VIP", tone: "gold", city: "MG · 18 pedidos" },
+            { name: "Studio Norte", tag: "Novo", tone: "ok", city: "RJ · 3 pedidos" },
+            { name: "Alpha Tech", tag: "Inativo", tone: "muted", city: "PR · 0 pedidos" },
+          ].map((c) => (
+            <div key={c.name} className="mock-client-row">
+              <div className="mock-avatar" />
+              <div className="mock-client-copy">
+                <strong>{c.name}</strong>
+                <small>{c.city}</small>
+              </div>
+              <span className={`pill ${c.tone === "gold" ? "warn" : c.tone === "muted" ? "" : "ok"}`}>
+                {c.tag}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -117,73 +169,43 @@ function CrmMock() {
 
 function OpsMock() {
   return (
-    <div className="mock-screen mock-ops" aria-hidden="true">
-      <Chrome title="NEXAUT · Operação" />
-      <div className="mock-body mock-ops-body">
-        <div className="mock-toolbar">
-          <span className="mock-search" />
-          <span className="mock-filter" />
-          <span className="mock-filter narrow" />
-        </div>
-        <div className="mock-table">
-          <div className="mock-tr head">
-            <span>Pedido</span>
-            <span>Status</span>
-            <span>SLA</span>
-            <span>Valor</span>
-          </div>
-          {[
-            { status: "ok", label: "Entregue" },
-            { status: "warn", label: "Em rota" },
-            { status: "ok", label: "Separando" },
-            { status: "danger", label: "Atraso" },
-            { status: "ok", label: "Pago" },
-          ].map((row, i) => (
-            <div key={row.label + i} className="mock-tr">
-              <span className="mono">#{1042 + i}</span>
-              <span className={`pill ${row.status}`}>{row.label}</span>
-              <span className="bar-wrap">
-                <i style={{ width: `${55 + i * 8}%` }} />
-              </span>
-              <span className="mono">R$ {(890 + i * 120).toLocaleString("pt-BR")}</span>
+    <div className="mock-screen" aria-hidden="true">
+      <Chrome title="NEXAUT · Sistema Operacional" />
+      <div className="mock-body">
+        <aside className="mock-rail">
+          <div className="mock-rail-item is-on" />
+          <div className="mock-rail-item" />
+          <div className="mock-rail-item" />
+          <div className="mock-rail-item" />
+          <div className="mock-rail-item" />
+        </aside>
+        <div className="mock-main">
+          <div className="mock-kpis">
+            <div className="mock-kpi">
+              <span className="mock-kpi-label">Operação</span>
+              <span className="mock-kpi-value accent">98%</span>
+              <span className="mock-kpi-trend up">SLA</span>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FlowMock() {
-  return (
-    <div className="mock-screen mock-flow" aria-hidden="true">
-      <Chrome title="NEXAUT · Automação" />
-      <div className="mock-body mock-flow-body">
-        <div className="mock-nodes">
-          <div className="mock-node start">
-            <span>Trigger</span>
-            <small>Novo pedido</small>
+            <div className="mock-kpi">
+              <span className="mock-kpi-label">Fila</span>
+              <span className="mock-kpi-value">36</span>
+              <span className="mock-kpi-trend">tarefas</span>
+            </div>
+            <div className="mock-kpi">
+              <span className="mock-kpi-label">Equipe</span>
+              <span className="mock-kpi-value gold">12</span>
+              <span className="mock-kpi-trend">online</span>
+            </div>
           </div>
-          <div className="mock-edge" />
-          <div className="mock-node">
-            <span>Regra</span>
-            <small>Valor &gt; 500</small>
+          <div className="mock-ops-modules">
+            {["Pedidos", "Estoque", "Logística", "Financeiro", "Clientes", "Relatórios"].map(
+              (mod, i) => (
+                <div key={mod} className={`mock-module${i === 0 ? " is-active" : ""}`}>
+                  {mod}
+                </div>
+              ),
+            )}
           </div>
-          <div className="mock-edge" />
-          <div className="mock-node accent">
-            <span>Ação</span>
-            <small>Notificar time</small>
-          </div>
-          <div className="mock-edge" />
-          <div className="mock-node gold">
-            <span>Resultado</span>
-            <small>Lead priorizado</small>
-          </div>
-        </div>
-        <div className="mock-log">
-          <div className="mock-log-line ok">✓ Pedido #1088 capturado</div>
-          <div className="mock-log-line ok">✓ Regra aplicada em 42ms</div>
-          <div className="mock-log-line run">→ WhatsApp enviado</div>
         </div>
       </div>
     </div>
@@ -192,14 +214,16 @@ function FlowMock() {
 
 export function SystemMock({ kind }: { kind: MockKind }) {
   switch (kind) {
-    case "dashboard":
-      return <DashboardMock />;
-    case "crm":
-      return <CrmMock />;
+    case "stock":
+      return <StockMock />;
+    case "logistics":
+      return <LogisticsMock />;
+    case "products":
+      return <ProductsMock />;
+    case "clients":
+      return <ClientsMock />;
     case "ops":
       return <OpsMock />;
-    case "flow":
-      return <FlowMock />;
   }
 }
 
